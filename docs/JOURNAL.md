@@ -27,3 +27,15 @@ Une entrée par étape. Format : ce que j'ai fait, ce qui m'a bloqué et combien
 **Durée :** environ 2 h 30.
 
 ---
+
+## Étape 2 — Construire la v0.1
+Fait : backend Spring Boot complet (8 entités, Flyway V1/V2, services, contrôleurs, erreurs, CORS), frontend React 3 écrans, 2 tests, Docker Compose. Jalon v0.1 posé.
+Bloqué : 15 min CORS, 20 min packages Spring Boot 4 déplacés, 10 min starter Flyway.
+IA : traduction EF/RG en code. Vérifié par curl et tests d'intégration.
+
+## Étape 3 — Ouvrir l'enveloppe
+Fait : bug race condition (#14) avec issue AVANT code, test qui reproduit, fix, PR #15. Changement de besoin (#16) : deux relecteurs, migration V3 ajoutée (pas modifiée), RG17, PR #17. Sacrifice : EF13 passe en Could.
+IA : identification de la cause du bug. Vérifié par test de concurrence.
+
+## Étape 4 — Livrer la v1.0
+Fait : CHANGELOG, README d'installation, jalon v1.0 posé.

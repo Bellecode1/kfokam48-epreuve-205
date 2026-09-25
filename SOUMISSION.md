@@ -2,6 +2,7 @@
 
 Nom et prénom(s) : LAMAGO TSOFFO Dielca Sandi Belle
 Matricule : 205
+Centre : Yaoundé
 
 ## Projet
 

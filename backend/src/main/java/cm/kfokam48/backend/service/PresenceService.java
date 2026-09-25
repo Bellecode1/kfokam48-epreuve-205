@@ -9,6 +9,7 @@ import cm.kfokam48.backend.exception.*;
 import cm.kfokam48.backend.repository.PresenceRepository;
 import cm.kfokam48.backend.repository.SessionCoursRepository;
 import cm.kfokam48.backend.repository.TentativeCodeRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,6 @@ import java.util.List;
 
 @Service
 public class PresenceService {
-
-    private static final int MAX_ECHECS = 5;
 
     private final PresenceRepository presences;
     private final SessionCoursRepository sessions;
@@ -32,14 +31,9 @@ public class PresenceService {
 
     @Transactional
     public PresenceResponse marquer(MarquerPresenceRequest req) {
-        SessionCours session = sessions.findByCode(req.code()).orElse(null);
+        SessionCours session = sessions.findByCode(req.code())
+                .orElseThrow(CodeInconnuException::new);
 
-        // code inconnu : on incrémente le compteur pour l'étudiant, puis on lève
-        if (session == null) {
-            throw new CodeInconnuException();
-        }
-
-        // blocage ?
         TentativeCode t = tentatives.findBySessionIdAndEtudiantId(session.getId(), req.etudiantId())
                 .orElseGet(() -> {
                     TentativeCode tc = new TentativeCode();
@@ -54,21 +48,23 @@ public class PresenceService {
 
         if (session.isCloturee()) throw new SessionClotureeException();
         if (session.getExpirationAt().isBefore(LocalDateTime.now())) throw new CodeExpireException();
-        if (presences.existsBySessionIdAndEtudiantId(session.getId(), req.etudiantId())) throw new DejaPresentException();
 
-        Presence p = new Presence();
-        p.setSessionId(session.getId());
-        p.setEtudiantId(req.etudiantId());
-        p.setMarqueeAt(LocalDateTime.now());
-        p.setSource(SourcePresence.ETUDIANT);
-        Presence saved = presences.save(p);
+        try {
+            Presence p = new Presence();
+            p.setSessionId(session.getId());
+            p.setEtudiantId(req.etudiantId());
+            p.setMarqueeAt(LocalDateTime.now());
+            p.setSource(SourcePresence.ETUDIANT);
+            Presence saved = presences.saveAndFlush(p);
 
-        // reset compteur
-        t.setNbEchecs(0);
-        t.setBloqueJusqua(null);
-        tentatives.save(t);
+            t.setNbEchecs(0);
+            t.setBloqueJusqua(null);
+            tentatives.save(t);
 
-        return new PresenceResponse(saved.getId(), saved.getSessionId(), saved.getEtudiantId(), saved.getSource());
+            return new PresenceResponse(saved.getId(), saved.getSessionId(), saved.getEtudiantId(), saved.getSource());
+        } catch (DataIntegrityViolationException e) {
+            throw new DejaPresentException();
+        }
     }
 
     @Transactional

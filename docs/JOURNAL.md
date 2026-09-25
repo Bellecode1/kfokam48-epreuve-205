@@ -28,26 +28,36 @@ Une entrée par étape. Format : ce que j'ai fait, ce qui m'a bloqué et combien
 
 ---
 
-## Étape 2 — Construire la v0.1
-Fait : backend Spring Boot complet (8 entités, Flyway V1/V2, services, contrôleurs, erreurs, CORS), frontend React 3 écrans, 2 tests, Docker Compose. Jalon v0.1 posé.
-Bloqué : 15 min CORS, 20 min packages Spring Boot 4 déplacés, 10 min starter Flyway.
-IA : traduction EF/RG en code. Vérifié par curl et tests d'intégration.
-
 ## Étape 3 — Ouvrir l'enveloppe
-Fait : bug race condition (#14) avec issue AVANT code, test qui reproduit, fix, PR #15. Changement de besoin (#16) : deux relecteurs, migration V3 ajoutée (pas modifiée), RG17, PR #17. Sacrifice : EF13 passe en Could.
-IA : identification de la cause du bug. Vérifié par test de concurrence.
+
+**Fait :**
+- Issue #13 créée pour le bug de concurrence sur les présences
+- Test PresenceConcurrenceTest écrit pour reproduire le bug
+- Correction appliquée dans PresenceService (try/catch DataIntegrityViolationException)
+- Test passe après correction
+- README.md corrigé (suppression duplication)
+- Dockerfile frontend créé avec nginx.conf
+
+**Bloqué :**
+- 20 min sur le test de concurrence : l'exception était wrappée, a dû simplifier le test pour vérifier uniquement l'absence de doublon
+- Le changement de besoin (2 relecteurs par exercice) n'a pas été implémenté par manque de temps
+
+**IA :**
+- J'ai demandé à l'IA de proposer une correction pour le bug de concurrence. Elle a suggéré d'attraper DataIntegrityViolationException. J'ai adapté en vérifiant toute la chaîne de causes car l'exception était wrappée. Vérifié en lançant le test.
+
+**Durée :** environ 45 min.
+
+---
 
 ## Étape 4 — Livrer la v1.0
-Fait : CHANGELOG, README d'installation, jalon v1.0 posé.
 
-## Étape 2 — Construire la v0.1
-Fait : backend Spring Boot complet (8 entités, Flyway V1/V2, services, contrôleurs, erreurs, CORS), frontend React 3 écrans, 2 tests, Docker Compose. Jalon v0.1 posé.
-Bloqué : 15 min CORS, 20 min packages Spring Boot 4 déplacés, 10 min starter Flyway.
-IA : traduction EF/RG en code. Vérifié par curl et tests d'intégration.
+**Fait :**
+- README.md corrigé et complété
+- Dockerfile frontend créé
+- Jalon v1.0 à poser
 
-## Étape 3 — Ouvrir l'enveloppe
-Fait : bug race condition (#14) avec issue AVANT code, test qui reproduit, fix, PR #15. Changement de besoin (#16) : deux relecteurs, migration V3 ajoutée (pas modifiée), RG17, PR #17. Sacrifice : EF13 passe en Could.
-IA : identification de la cause du bug. Vérifié par test de concurrence.
+**IA :** Non utilisé pour cette étape.
 
-## Étape 4 — Livrer la v1.0
-Fait : CHANGELOG, README d'installation, jalon v1.0 posé.
+**Durée :** environ 15 min.
+
+---

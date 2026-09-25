@@ -150,6 +150,7 @@ paths:
                     exercicesDeposes: { type: integer }
                     moyenne: { type: number, nullable: true }
                     relecturesEnAttente: { type: integer }
+                    moyenneProvisoire: { type: boolean }
         "404": { $ref: "#/components/responses/Erreur" }
 
   /api/promotions:

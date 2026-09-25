@@ -9,6 +9,7 @@ import cm.kfokam48.backend.exception.*;
 import cm.kfokam48.backend.repository.PresenceRepository;
 import cm.kfokam48.backend.repository.SessionCoursRepository;
 import cm.kfokam48.backend.repository.TentativeCodeRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,14 +55,33 @@ public class PresenceService {
 
         if (session.isCloturee()) throw new SessionClotureeException();
         if (session.getExpirationAt().isBefore(LocalDateTime.now())) throw new CodeExpireException();
-        if (presences.existsBySessionIdAndEtudiantId(session.getId(), req.etudiantId())) throw new DejaPresentException();
+        
+        // Vérification optimiste - mais la vraie protection est la contrainte unique
+        if (presences.existsBySessionIdAndEtudiantId(session.getId(), req.etudiantId())) {
+            throw new DejaPresentException();
+        }
 
         Presence p = new Presence();
         p.setSessionId(session.getId());
         p.setEtudiantId(req.etudiantId());
         p.setMarqueeAt(LocalDateTime.now());
         p.setSource(SourcePresence.ETUDIANT);
-        Presence saved = presences.save(p);
+        
+        Presence saved;
+        try {
+            saved = presences.save(p);
+        } catch (Exception e) {
+            // Cas de concurrence : un autre thread a créé la présence entre la vérification et la sauvegarde
+            // L'exception peut être wrappée, on vérifie la cause
+            Throwable cause = e;
+            while (cause != null) {
+                if (cause instanceof DataIntegrityViolationException) {
+                    throw new DejaPresentException();
+                }
+                cause = cause.getCause();
+            }
+            throw e;
+        }
 
         // reset compteur
         t.setNbEchecs(0);

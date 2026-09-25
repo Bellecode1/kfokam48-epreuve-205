@@ -1,8 +1,7 @@
 # Soumission — Épreuve finale fullstack KFOKAM48
 
-Nom et prénom(s) : <ton nom>
-Matricule : KF48-<centre>-205
-Centre : <Yaoundé | Douala | Bafoussam>
+Nom et prénom(s) : LAMAGO TSOFFO Dielca Sandi Belle
+Matricule : 205
 
 ## Projet
 

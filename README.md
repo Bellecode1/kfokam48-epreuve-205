@@ -46,33 +46,7 @@ Aucun mot de passe (voir Q1 du client). L'utilisateur choisit son nom dans une l
 
 Promotions chargées au démarrage :
 - KF48-YAO (Sara ALIOUM, Karim BELLO, Léa CHOUPO)
-- KF48-DOU (Yann DUPONT, Paul EYENGA)kfokam48-epreuve-205$ cd ~/Projets/kfokam48-epreuve-205
-
-cat > README.md << 'EOF'
-# KFOKAM48 — Présence & Relecture
-
-Application de gestion des présences et de la relecture par les pairs.
-Épreuve finale fullstack — matricule 205.
-
-## Frontend choisi : React
-
-React (Vite) parce que l'application ne comporte que trois écrans, sans besoin de SEO ni de rendu serveur, et que React permet une mise en place rapide avec Vite.
-
-## Stack
-
-- Backend : Java 17, Spring Boot 4.0.8, Maven (wrapper `mvnw`)
-- Frontend : React 18 + Vite, axios, react-router-dom
-- Base : H2 en dev, PostgreSQL en Docker (profil `docker`)
-- Migrations : Flyway
-- Conteneurs : Docker Compose
-
-## Démarrage
-
-### Option 1 — Docker Compose (recommandé)
-
-```bash
-docker compose up
-> 
+- KF48-DOU (Yann DUPONT, Paul EYENGA)
 
 ## Documentation
 

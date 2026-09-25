@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
 
 export function Chargement({ children }) {
-  return <p style={{ color: '#666' }}>{children || 'Chargement...'}</p>;
+  return <p className="chargement">{children || 'Chargement...'}</p>;
 }
 
 export function Erreur({ erreur }) {
   if (!erreur) return null;
   return (
-    <p style={{ color: 'crimson' }}>
+    <p className="erreur">
       [{erreur.code}] {erreur.message}
     </p>
   );
+}
+
+export function Succes({ message }) {
+  if (!message) return null;
+  return <p className="succes">{message}</p>;
 }
 
 export function SelecteurPromotion({ value, onChange }) {
@@ -33,7 +38,10 @@ export function SelecteurPromotion({ value, onChange }) {
 export function SelecteurEtudiant({ promotionId, value, onChange }) {
   const [etudiants, setEtudiants] = useState([]);
   useEffect(() => {
-    if (!promotionId) return;
+    if (!promotionId) {
+      setEtudiants([]);
+      return;
+    }
     import('./api/endpoints').then(({ promotionsApi }) => {
       promotionsApi.etudiants(promotionId).then(setEtudiants).catch(() => {});
     });

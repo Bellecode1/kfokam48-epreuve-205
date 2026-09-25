@@ -107,7 +107,8 @@ L'application **KFOKAM48 Présence & Relecture** centralise tout cela. Pour chaq
 | RG3 | Un étudiant ne peut pas marquer sa présence après la clôture de la session | Q3 |
 | RG4 | Après 5 erreurs de code, l'étudiant est bloqué pendant 2 minutes | Q4 |
 | RG5 | Un étudiant ne peut jamais relire son propre exercice | Q5 |
-| RG6 | Un exercice a un seul relecteur à un instant donné | Q6 |
+| RG6 | (obsolète depuis l'étape 3) Un exercice a un seul relecteur à un instant donné | Q6 |
+| RG17 | Chaque exercice est relu par deux pairs différents. La note retenue est la moyenne des deux. Si un seul a rendu, la note est provisoire | Changement de besoin, étape 3 |
 | RG7 | Le relecteur est choisi au hasard par le système, parmi les étudiants présents à la session | Q7 |
 | RG8 | L'étudiant relu voit sa note et son commentaire, mais pas le nom du relecteur | Q8 |
 | RG9 | La note est un nombre entier de 0 à 20 | Q9 |

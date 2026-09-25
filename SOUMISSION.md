@@ -7,7 +7,7 @@ Centre : <Yaoundé | Douala | Bafoussam>
 ## Projet
 
 Dépôt GitHub (public) : https://github.com/Bellecode1/kfokam48-epreuve-205
-Commit final (hash complet sur 40 caractères) : 19e6b7f1723dcd9f8f471c18f01118f51b3a74d7
+Commit final (hash complet sur 40 caractères) : 79df1880ca6b122daeea888f62b61ebe49da3b2b
 ## Divers
 
 Frontend choisi : React

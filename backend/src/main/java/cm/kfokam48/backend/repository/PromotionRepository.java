@@ -1,0 +1,6 @@
+package cm.kfokam48.backend.repository;
+
+import cm.kfokam48.backend.domain.Promotion;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PromotionRepository extends JpaRepository<Promotion, Long> {}

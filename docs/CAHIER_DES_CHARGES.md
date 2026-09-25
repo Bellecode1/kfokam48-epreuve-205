@@ -180,28 +180,22 @@ L'application **KFOKAM48 Présence & Relecture** centralise tout cela. Pour chaq
 - Issues GitHub — backlog avec critères d'acceptation, priorisation Must/Should/Could, renvoi aux EFx / RGx.
 - Pull requests — une par branche, liées aux issues.
 
-**Dans le dépôt `kfokam48-gitlab-205` (étape 5) :**
-
-- Le dépôt de l'épreuve Git, avec ses branches poussées.
-
 **Sur la plateforme :**
 
-- `SOUMISSION.md` — téléversé avant 18h00, avec les liens des deux dépôts et les hash des commits finaux.
+- `SOUMISSION.md` — téléversé avant 18h00, avec le lien du dépôt et le hash du commit final.
 
 ## 10. Démarche prévue
 
-Je travaille dans l'ordre des six étapes imposées par le sujet.
+Je travaille dans l'ordre des cinq étapes imposées par le sujet.
 
-1. **Analyser, spécifier, concevoir** — Je rédige le cahier des charges (10 sections), je produis les trois diagrammes en Mermaid (cas d'utilisation, classes, séquence), je crée le backlog en issues GitHub avec critères d'acceptation et priorisation Must/Should/Could, et je complète le contrat d'API. Je pose le commit `[JALON] analyse` avant d'écrire la moindre ligne de code.
+1. **Analyser, spécifier, concevoir** — Je rédige le cahier des charges (10 sections), je produis les trois diagrammes en Mermaid (cas d'utilisation, classes, séquence) plus le bonus états-transitions, je crée le backlog en issues GitHub avec critères d'acceptation et priorisation Must/Should/Could, et je complète le contrat d'API. Je pose le commit `[JALON] analyse` avant d'écrire la moindre ligne de code.
 
-2. **Construire la v0.1** — Je développe uniquement les stories Must. Une branche par ticket, une pull request par branche, les issues fermées par les commits. Je pose le commit `[JALON] v0.1` et je pousse.
+2. **Construire la v0.1** — Je développe uniquement les stories Must. Une branche par issue, une pull request par branche, les issues fermées par les commits. Je pose le commit `[JALON] v0.1` et je pousse.
 
-3. **Ouvrir l'enveloppe** — J'ouvre l'enveloppe qui contient le bug signalé et le changement de besoin. J'ouvre une issue pour le bug, je le reproduis, j'écris une migration versionnée, je mets à jour le contrat d'API, je re-priorise le backlog, et je sépare le correctif de l'évolution. Je mets à jour le cahier des charges et les diagrammes dans un commit qui le dit.
+3. **Ouvrir l'enveloppe** — Une fois `[JALON] v0.1` poussé, je demande l'enveloppe au surveillant. Elle contient le bug signalé et le changement de besoin. J'ouvre une issue pour le bug, je le reproduis, j'écris une migration versionnée, je mets à jour le contrat d'API, je re-priorise le backlog, et je sépare le correctif de l'évolution. Je mets à jour le cahier des charges et les diagrammes dans un commit qui le dit.
 
 4. **Livrer la v1.0** — Je pose le commit `[JALON] v1.0`, je rédige le `CHANGELOG.md` cohérent avec l'historique Git, je teste le README depuis un clone vierge, je trie le backlog restant.
 
-5. **Épreuve Git** — Je clone le `git-lab.bundle`, je résous les cinq situations, je pousse toutes les branches dans un dépôt séparé `kfokam48-gitlab-205`.
+5. **Soumettre** — Je rédige `SOUMISSION.md`, je relève le hash complet du commit final, je vérifie le lien du dépôt depuis une fenêtre de navigation privée, et je téléverse sur la plateforme avant 18h00.
 
-6. **Soumettre** — Je rédige `SOUMISSION.md`, je relève les hash complets des commits finaux, je vérifie les deux liens depuis une fenêtre de navigation privée, et je téléverse sur la plateforme avant 18h00.
-
-**Definition of Done :** un ticket est terminé quand le code est écrit, testé, commité sur une branche, poussé, la pull request est ouverte et liée à l'issue, et la CI (si présente) passe.
+**Definition of Done :** une issue est terminée quand le code est écrit, testé, commité sur une branche, poussé, la pull request est ouverte et liée à l'issue.
